@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disney+ 設定教學｜弘明工作室</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #ff6600; /* Disney+ 橘黃色調 */
+        --bg: linear-gradient(135deg, #fff7f0 0%, #fffbf5 100%);
+        --text: #303030;
+        --card-bg: #ffffff;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        --radius: 1rem;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 2rem 1rem 6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 0.25rem;
+      }
+
+      h1 + h1 {
+        margin-bottom: 1rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 900px;
+        animation: fadeIn 0.8s ease-in;
+      }
+
+      /* Progress Bar */
+      #progress-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.05);
+        z-index: 9999;
+      }
+
+      #progress-bar {
+        width: 0%;
+        height: 100%;
+        background: var(--primary);
+        transition: width 0.1s linear;
+      }
+
+      /* Step Grid */
+      .step-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .step {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem;
+        text-align: center;
+        transform: translateY(30px) scale(0.95);
+        opacity: 0;
+        transition: 0.4s ease;
+        cursor: grab;
+      }
+
+      .step.show {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      .step img {
+        width: 100%;
+        border-radius: calc(var(--radius) - 0.25rem);
+        margin-top: 0.5rem;
+        object-fit: cover;
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+      }
+
+      .step:hover img {
+        transform: scale(1.06);
+      }
+
+      /* Lightbox */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 10000;
+      }
+
+      #lightbox.show {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      #lightbox img {
+        max-width: 92%;
+        max-height: 92%;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        cursor: zoom-out;
+      }
+
+      /* Back to Top */
+      #backToTop {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 48px;
+        height: 48px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+      }
+
+      #backToTop.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 460px) {
+        .step-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div id="progress-wrapper"><div id="progress-bar"></div></div>
+
+    <!-- Lightbox -->
+    <div id="lightbox"><img src="" alt="preview" /></div>
+
+    <h1>弘明工作室專屬</h1>
+    <h1>🔥Disney設定教學🔥</h1>
+
+    <div class="container">
+      <div class="step-list">
+        <article class="step"><h3>Step 1</h3><img src="picture/01.jpg" alt="Step 1" /></article>
+        <article class="step"><h3>Step 2</h3><img src="picture/02.jpg" alt="Step 2" /></article>
+        <article class="step"><h3>Step 3</h3><img src="picture/03.jpg" alt="Step 3" /></article>
+        <article class="step"><h3>Step 4</h3><img src="picture/04.jpg" alt="Step 4" /></article>
+        <article class="step"><h3>Step 5</h3><img src="picture/05.jpg" alt="Step 5" /></article>
+      </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" aria-label="回到頂部">▲</button>
+
+    <!-- VanillaTilt -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.3/dist/vanilla-tilt.min.js"></script>
+    <script>
+      /* Progress */
+      window.addEventListener("scroll", () => {
+        const docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const percent = (window.scrollY / docH) * 100;
+        document.getElementById("progress-bar").style.width = percent + "%";
+
+        const backBtn = document.getElementById("backToTop");
+        window.scrollY > 500 ? backBtn.classList.add("show") : backBtn.classList.remove("show");
+      });
+
+      document.getElementById("backToTop").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      /* Reveal Animation */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("show");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+
+      document.querySelectorAll(".step").forEach((s) => observer.observe(s));
+
+      /* Lightbox */
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = lightbox.querySelector("img");
+      document.querySelectorAll(".step img").forEach((img) => {
+        img.addEventListener("click", () => {
+          lbImg.src = img.src;
+          lightbox.classList.add("show");
+        });
+      });
+      lightbox.addEventListener("click", () => lightbox.classList.remove("show"));
+
+      /* Tilt */
+      VanillaTilt.init(document.querySelectorAll(".step"), {
+        max: 7,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.12,
+      });
+    </script>
+  </body>
+</html>

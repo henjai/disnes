@@ -13,9 +13,8 @@
         --primary: #ff6600;
         --bg: linear-gradient(135deg, #fff7f0 0%, #fffbf5 100%);
         --text: #303030;
-        --card-bg: #ffffff;
         --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        --radius: 1rem;
+        --radius: 0.75rem;
       }
 
       * {
@@ -70,7 +69,7 @@
         transition: width 0.1s linear;
       }
 
-      /* Step Grid */
+      /* Image Grid */
       .step-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -78,15 +77,11 @@
       }
 
       .step {
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 1rem;
-        text-align: center;
+        position: relative;
         transform: translateY(30px) scale(0.95);
         opacity: 0;
         transition: transform 0.4s ease, opacity 0.4s ease;
-        cursor: grab;
+        cursor: zoom-in;
       }
 
       .step.show {
@@ -96,9 +91,9 @@
 
       .step img {
         width: 100%;
-        border-radius: calc(var(--radius) - 0.25rem);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
         object-fit: cover;
-        cursor: zoom-in;
         transition: transform 0.3s ease;
       }
 
@@ -110,7 +105,7 @@
       #lightbox {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.85);
         backdrop-filter: blur(4px);
         display: flex;
         align-items: center;
@@ -185,16 +180,16 @@
     <!-- Lightbox -->
     <div id="lightbox"><img src="" alt="preview" /></div>
 
-    <h1>🔥 弘明工作室專屬 🔥</h1>
-    <h1>Disney+ 設定教學</h1>
+    <h1>弘明工作室專屬</h1>
+    <h1>🔥Disney設定教學🔥</h1>
 
     <div class="container">
       <div class="step-list">
-        <article class="step"><img src="picture/01.jpg" alt="Step 1" /></article>
-        <article class="step"><img src="picture/02.jpg" alt="Step 2" /></article>
-        <article class="step"><img src="picture/03.jpg" alt="Step 3" /></article>
-        <article class="step"><img src="picture/04.jpg" alt="Step 4" /></article>
-        <article class="step"><img src="picture/05.jpg" alt="Step 5" /></article>
+        <figure class="step"><img src="picture/01.jpg" alt="Step 1" /></figure>
+        <figure class="step"><img src="picture/02.jpg" alt="Step 2" /></figure>
+        <figure class="step"><img src="picture/03.jpg" alt="Step 3" /></figure>
+        <figure class="step"><img src="picture/04.jpg" alt="Step 4" /></figure>
+        <figure class="step"><img src="picture/05.jpg" alt="Step 5" /></figure>
       </div>
     </div>
 

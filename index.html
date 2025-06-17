@@ -7,13 +7,10 @@
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --primary: #ff6600; /* Disney+ 橘黃色調 */
+        --primary: #ff6600;
         --bg: linear-gradient(135deg, #fff7f0 0%, #fffbf5 100%);
         --text: #303030;
         --card-bg: #ffffff;
@@ -42,11 +39,11 @@
       h1 {
         font-size: 1.8rem;
         text-align: center;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.3rem;
       }
 
       h1 + h1 {
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
       }
 
       .container {
@@ -88,7 +85,7 @@
         text-align: center;
         transform: translateY(30px) scale(0.95);
         opacity: 0;
-        transition: 0.4s ease;
+        transition: transform 0.4s ease, opacity 0.4s ease;
         cursor: grab;
       }
 
@@ -100,7 +97,6 @@
       .step img {
         width: 100%;
         border-radius: calc(var(--radius) - 0.25rem);
-        margin-top: 0.5rem;
         object-fit: cover;
         cursor: zoom-in;
         transition: transform 0.3s ease;
@@ -189,16 +185,16 @@
     <!-- Lightbox -->
     <div id="lightbox"><img src="" alt="preview" /></div>
 
-    <h1>弘明工作室專屬</h1>
-    <h1>🔥Disney設定教學🔥</h1>
+    <h1>🔥 弘明工作室專屬 🔥</h1>
+    <h1>Disney+ 設定教學</h1>
 
     <div class="container">
       <div class="step-list">
-        <article class="step"><h3>Step 1</h3><img src="picture/01.jpg" alt="Step 1" /></article>
-        <article class="step"><h3>Step 2</h3><img src="picture/02.jpg" alt="Step 2" /></article>
-        <article class="step"><h3>Step 3</h3><img src="picture/03.jpg" alt="Step 3" /></article>
-        <article class="step"><h3>Step 4</h3><img src="picture/04.jpg" alt="Step 4" /></article>
-        <article class="step"><h3>Step 5</h3><img src="picture/05.jpg" alt="Step 5" /></article>
+        <article class="step"><img src="picture/01.jpg" alt="Step 1" /></article>
+        <article class="step"><img src="picture/02.jpg" alt="Step 2" /></article>
+        <article class="step"><img src="picture/03.jpg" alt="Step 3" /></article>
+        <article class="step"><img src="picture/04.jpg" alt="Step 4" /></article>
+        <article class="step"><img src="picture/05.jpg" alt="Step 5" /></article>
       </div>
     </div>
 
@@ -223,17 +219,14 @@
       });
 
       /* Reveal Animation */
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("show");
-              observer.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.25 }
-      );
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("show");
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.25 });
 
       document.querySelectorAll(".step").forEach((s) => observer.observe(s));
 
